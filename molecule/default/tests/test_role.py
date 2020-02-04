@@ -21,7 +21,7 @@ def test_composer_is_installed(host, path, username, groupname, mode):
 
 
 @pytest.mark.parametrize('path,user,group,mode,content', [
-  ('/root/.composer/auth.json', 'root', 'root', 0o640, 'example.org'),
+  ('/root/.composer/auth.json', 'root', 'root', 0o640, 'github.com'),
 ])
 def test_auth_file_exists(host, path, user, group, mode, content):
     path = host.file(path)
