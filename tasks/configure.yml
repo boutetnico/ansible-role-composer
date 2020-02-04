@@ -1,0 +1,17 @@
+---
+- name: Ensure composer directory exists
+  file:
+    group: "{{ item.user }}"
+    owner: "{{ item.user }}"
+    path: "{{ item.home }}"
+    state: directory
+  loop: "{{ composer_users }}"
+
+- name: Ensure composer auth.json exists
+  template:
+    dest: "{{ item.home }}/auth.json"
+    group: "{{ item.user }}"
+    mode: 0640
+    owner: "{{ item.user }}"
+    src: auth.json.j2
+  loop: "{{ composer_users }}"
