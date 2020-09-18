@@ -2,6 +2,7 @@
 - name: Ensure composer directory exists
   file:
     group: "{{ item.user }}"
+    mode: 0755
     owner: "{{ item.user }}"
     path: "{{ item.home }}"
     state: directory
