@@ -1,12 +1,15 @@
+[![tests](https://github.com/boutetnico/ansible-role-composer/workflows/Test%20ansible%20role/badge.svg)](https://github.com/boutetnico/ansible-role-composer/actions?query=workflow%3A%22Test+ansible+role%22)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-boutetnico.composer-blue.svg)](https://galaxy.ansible.com/boutetnico/composer)
+
 ansible-role-composer
 =====================
 
-This role installs and configures Composer.
+This role installs and configures [Composer](https://getcomposer.org/).
 
 Requirements
 ------------
 
-Ansible 2.6 or newer.
+Ansible 2.7 or newer.
 
 Supported Platforms
 -------------------
@@ -19,11 +22,11 @@ Supported Platforms
 Role Variables
 --------------
 
-| Variable                     | Required | Default                         | Choices   | Comments                                      |
-|------------------------------|----------|---------------------------------|-----------|-----------------------------------------------|
-| composer_path                | true     | `/usr/local/bin/composer`       | string    |                                               |
-| composer_keep_updated        | true     | `false`                         | bool      |                                               |
-| composer_users               | true     |                                 | list      | Configuration object. See `defaults/main.yml`.|
+| Variable                 | Required | Default                     | Choices   | Comments                                      |
+|--------------------------|----------|-----------------------------|-----------|-----------------------------------------------|
+| composer_path            | true     | `/usr/local/bin/composer`   | string    |                                               |
+| composer_keep_updated    | true     | `false`                     | bool      |                                               |
+| composer_users           | true     |                             | list      | Configuration object. See `defaults/main.yml`.|
 
 Dependencies
 ------------
