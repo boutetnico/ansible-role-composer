@@ -3,7 +3,7 @@
   hosts: all
 
   roles:
-    - role: ansible-role-composer
+    - role: boutetnico.composer
       composer_users:
         - user: root
           home: /root/.composer
