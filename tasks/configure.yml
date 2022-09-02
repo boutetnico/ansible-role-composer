@@ -1,6 +1,6 @@
 ---
 - name: Ensure composer directory exists
-  file:
+  ansible.builtin.file:
     group: "{{ item.user }}"
     mode: 0755
     owner: "{{ item.user }}"
@@ -9,7 +9,7 @@
   loop: "{{ composer_users }}"
 
 - name: Ensure composer auth.json exists
-  template:
+  ansible.builtin.template:
     dest: "{{ item.home }}/auth.json"
     group: "{{ item.user }}"
     mode: 0640

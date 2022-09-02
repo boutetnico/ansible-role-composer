@@ -1,18 +1,18 @@
 ---
 - name: Check if Composer is already installed
-  stat:
+  ansible.builtin.stat:
     path: "{{ composer_path }}"
   register: _composer
 
 - name: Get Composer installer signature
-  uri:
+  ansible.builtin.uri:
     return_content: true
     url: https://composer.github.io/installer.sig
   register: composer_installer_signature
   when: not _composer.stat.exists
 
 - name: Download Composer installer
-  get_url:
+  ansible.builtin.get_url:
     checksum: "sha384:{{ composer_installer_signature.content }}"
     dest: /tmp/composer-installer.php
     mode: 0755
@@ -20,19 +20,19 @@
   when: not _composer.stat.exists
 
 - name: Run Composer installer
-  command: php composer-installer.php
+  ansible.builtin.command: php composer-installer.php
   args:
     chdir: /tmp
   when: not _composer.stat.exists
 
 - name: Move Composer into its final location
-  command: mv /tmp/composer.phar {{ composer_path }}
+  ansible.builtin.command: mv /tmp/composer.phar {{ composer_path }}
   args:
     creates: "{{ composer_path }}"
   when: not _composer.stat.exists
 
 - name: Update Composer to latest version (if configured)
-  command: php {{ composer_path }} self-update
+  ansible.builtin.command: php {{ composer_path }} self-update
   register: composer_update
   changed_when: "'Upgrading to version' in composer_update.stdout"
   when: composer_keep_updated | bool
