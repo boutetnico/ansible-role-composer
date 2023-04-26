@@ -5,12 +5,16 @@ import os
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
-    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
+    os.environ["MOLECULE_INVENTORY_FILE"]
+).get_hosts("all")
 
 
-@pytest.mark.parametrize('path,username,groupname,mode', [
-  ('/usr/local/bin/composer', 'root', 'root', 0o755),
-])
+@pytest.mark.parametrize(
+    "path,username,groupname,mode",
+    [
+        ("/usr/local/bin/composer", "root", "root", 0o755),
+    ],
+)
 def test_composer_is_installed(host, path, username, groupname, mode):
     path = host.file(path)
     assert path.exists
@@ -20,9 +24,12 @@ def test_composer_is_installed(host, path, username, groupname, mode):
     assert path.mode == mode
 
 
-@pytest.mark.parametrize('path,user,group,mode,content', [
-  ('/root/.composer/auth.json', 'root', 'root', 0o640, 'github.com'),
-])
+@pytest.mark.parametrize(
+    "path,user,group,mode,content",
+    [
+        ("/root/.composer/auth.json", "root", "root", 0o640, "github.com"),
+    ],
+)
 def test_auth_file_exists(host, path, user, group, mode, content):
     path = host.file(path)
     assert path.exists

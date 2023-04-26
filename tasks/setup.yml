@@ -15,7 +15,7 @@
   ansible.builtin.get_url:
     checksum: "sha384:{{ composer_installer_signature.content }}"
     dest: /tmp/composer-installer.php
-    mode: 0755
+    mode: "0755"
     url: https://getcomposer.org/installer
   when: not _composer.stat.exists
 
@@ -23,6 +23,7 @@
   ansible.builtin.command: php composer-installer.php
   args:
     chdir: /tmp
+  changed_when: false
   when: not _composer.stat.exists
 
 - name: Move Composer into its final location
