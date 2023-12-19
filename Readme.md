@@ -41,6 +41,7 @@ Example Playbook
         - role: ansible-role-composer
           composer_users:
             - user: root
+              group: root
               home: /root/.composer
               auth:
                 http-basic:

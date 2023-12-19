@@ -5,6 +5,7 @@ composer_keep_updated: false
 
 composer_users: []
 # - user: root
+#   group: root
 #   home: /root/.composer
 #   auth:
 #     http-basic:
