@@ -16,3 +16,4 @@
     owner: "{{ item.user }}"
     src: auth.json.j2
   loop: "{{ composer_users }}"
+  no_log: true
