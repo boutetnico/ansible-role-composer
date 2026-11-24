@@ -7,6 +7,8 @@
     path: "{{ item.home }}"
     state: directory
   loop: "{{ composer_users }}"
+  loop_control:
+    label: "{{ item.user }}"
 
 - name: Ensure composer auth.json exists
   ansible.builtin.template:
@@ -16,4 +18,6 @@
     owner: "{{ item.user }}"
     src: auth.json.j2
   loop: "{{ composer_users }}"
+  loop_control:
+    label: "{{ item.user }}"
   no_log: true
